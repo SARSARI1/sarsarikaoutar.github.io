@@ -261,3 +261,32 @@ function initFloatingElements() {
         element.style.animationDelay = `${Math.random() * 2}s`;
     });
 }
+// Add this to your existing JavaScript code
+function initDownloadButton() {
+    const downloadBtn = document.querySelector('a.btn[href="#"]');
+    
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Create a temporary link element
+            const link = document.createElement('a');
+            link.href = 'kaoutar_sarsari.pdf'; // Make sure this file exists in your root directory
+            link.download = 'kaoutar_sarsari.pdf';
+            
+            // Trigger the download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Optional: Track the download
+            console.log('CV download initiated');
+        });
+    }
+}
+
+// Add this to your DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', function() {
+    // ... your existing initialization code ...
+    initDownloadButton(); // Add this line
+});
